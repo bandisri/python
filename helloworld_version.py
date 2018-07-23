@@ -35,3 +35,7 @@ print(x.find('ring',0))
 # (1,2,3,4,5)
 # Dictionary
 # ("x":1, "y":2)
+
+
+pw = input("Enter your name: ")
+print(pw)
