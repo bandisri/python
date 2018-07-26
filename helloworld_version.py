@@ -28,14 +28,24 @@ print(x.find('ring',0))
 
 #Sequence type
 # Lists
-# [1,2,3,4,5]
+# natNumbers = [1,2,3,4,5]
+# for number in natNumbers:
+#     print(number)
+
 # Ranges
-# range(10)
+# for value in range(10):
+#     if value % 2 == 0:
+#         print(value)
+
 # Tuples
-# (1,2,3,4,5)
+# someTuple = (1,2,3,4,5)
+# for value in someTuple:
+#     print(value)
+
 # Dictionary
-# ("x":1, "y":2)
+someDict = {'x':1, 'y':2}
+for k, v in someDict.items():
+    print(k)
 
-
-pw = input("Enter your name: ")
-print(pw)
+# pw = input("Enter your name: ")
+# print(pw)
