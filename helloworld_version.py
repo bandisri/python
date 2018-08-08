@@ -44,6 +44,7 @@ print(x.find('ring',0))
 
 # Dictionary
 someDict = {'x':1, 'y':2}
+print('Dictonary Value {}'.format(someDict['x']))
 for k, v in someDict.items():
     print(k)
 
