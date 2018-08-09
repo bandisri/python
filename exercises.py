@@ -100,7 +100,41 @@ def exercise7():
     print("New List, only evens {}".format(evens))
 
 def exercise8():
-    random.choice(somearray of rock paper)
+    seq = ['rock', 'paper', 'scissors']
+
+    play = True
+    while play:
+        # print('1.Rock', '2.Paper', '3.Scissors')
+        userChoice = input(str(seq)+':')
+        randChoice = random.choice(seq)
+
+        print("=====================================================")
+        print("Your choice: {}".format(userChoice))
+        print("My Choice: {}".format(randChoice))
+
+        if userChoice.upper() == 'EXIT':
+            play = False
+            exit()
+
+        userWins = False
+        if userChoice == randChoice:
+            print('Go Again...')
+            # exit()
+        else:
+            if userChoice == 'rock' and randChoice == 'scissors':
+                userWins = True
+            elif userChoice == 'scissors' and randChoice == 'paper':
+                userWins = True
+            elif userChoice == 'paper' and randChoice == 'rock':
+                userWins = True
+
+            if userWins:
+                print("You Win!!!")
+            else:
+                print("I win!!!")
+        print("=====================================================")
+
+
 
 def main():
     exercise8()
