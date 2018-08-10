@@ -54,10 +54,11 @@ def exercise4():
         exit()
 
     divisorList = []
-    for i in range(1, int(userInput)+1):
+    for i in range(2, int(userInput)):
         if int(userInput) % i == 0:
             divisorList.append(i)
     print(divisorList)
+    return divisorList
 
 def exercise5():
     a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
@@ -105,16 +106,25 @@ def exercise8():
     play = True
     while play:
         # print('1.Rock', '2.Paper', '3.Scissors')
-        userChoice = input(str(seq)+':')
+        for (index,value) in enumerate(seq):
+            print("{}.{}".format(index+1, value))
+
+        # userChoice = input(str(seq)+':')
+        userChoice = input("Your choice enter number: ")
+        if not userChoice.isdigit() or int(userChoice) > 3:
+            play = False
+            exit()
+
+        userChoice = seq[int(userChoice)]
         randChoice = random.choice(seq)
 
         print("=====================================================")
         print("Your choice: {}".format(userChoice))
         print("My Choice: {}".format(randChoice))
 
-        if userChoice.upper() == 'EXIT':
-            play = False
-            exit()
+        # if userChoice.upper() == 'EXIT':
+        #     play = False
+        #     exit()
 
         userWins = False
         if userChoice == randChoice:
@@ -134,10 +144,53 @@ def exercise8():
                 print("I win!!!")
         print("=====================================================")
 
+def exercise9():
+    playGame = True
+    totalGusses = 0
 
+    while playGame:
+        print("Enter 0 anytime to EXIT")
+        userGuess = input("Guess number between 1 - 9: ")
+        if not userGuess.isdigit() or int(userGuess) == 0:
+            playGame = False
+        else:
+            randomGuess = random.randint(1,9)
+
+            print("Your guess {}".format(userGuess))
+            print("System {}".format(randomGuess))
+
+            diff = int(userGuess) - int(randomGuess)
+            if diff == 0:
+                print("Correct guess")
+            elif diff > 0:
+                print("Guess too high {}".format(diff))
+            else:
+                print("Guess too low {}".format(diff))
+
+            totalGusses+=1
+    else:
+        print("Total Number of Gusses {}".format(totalGusses))
+
+def exercise11():
+    divList = exercise4()
+    if len(divList) > 0:
+        print("Not prime")
+    else:
+        print("Prime number")
+
+def exercise12():
+    listLength = random.randint(10,20)
+    randomList = random.sample(range(100),listLength)
+    print(randomList)
+
+    newList = []
+    newList.append(randomList[0])
+    newList.append(randomList[len(randomList)-1])
+
+    print(newList)
 
 def main():
-    exercise8()
+    exercise12()
 
 if __name__ == '__main__':
     main()
