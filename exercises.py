@@ -189,8 +189,38 @@ def exercise12():
 
     print(newList)
 
+def exercise13():
+    userInput = input("Enter Fibonnaci series length: ")
+    fibSeries = []
+    fibSeries.append(1)
+    fibSeries.append(1)
+    if userInput.isdigit():
+        for n in range(2,int(userInput)):
+            fibSeries.append(fibSeries[n-2] + fibSeries[n-1])
+
+    print(fibSeries)
+
+def exercise14():
+    a = [1, 1, 2, 3, 5, 8, 8, 13, 21, 21, 34, 55, 89]
+    print('Actual list {}'.format(a))
+
+    # b = list()
+    # for i in a:
+    #     if not i in b:
+    #         b.append(i)
+
+    b = set(a)
+    print('Unique list {}'.format(b))
+
+def exercise15():
+    someStr = "My name is Michele"
+    outList = someStr.split(sep=" ")
+    print(outList)
+    outList.reverse()
+    print(outList)
+
 def main():
-    exercise12()
+    exercise15()
 
 if __name__ == '__main__':
     main()
