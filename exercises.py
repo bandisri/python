@@ -219,8 +219,40 @@ def exercise15():
     outList.reverse()
     print(outList)
 
+def exercise16():
+    ualphabets = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+    lalphabets = []
+    numerics = [0,1,2,3,4,5,6,7,8,9]
+    specials = ['#','!','@','$','%','&','(',')']
+
+    for value in ualphabets:
+        lalphabets.append(value.lower())
+
+    # print(lalphabets)
+    random.shuffle(lalphabets)
+    # print(lalphabets)
+
+    counter = 0
+    password = ''
+    passwordList = []
+    passwordList.append(random.choice(specials))
+    passwordList.append(random.choice(numerics))
+
+    while counter < 6:
+        passwordList.append(random.choice(ualphabets))
+        passwordList.append(random.choice(lalphabets))
+        counter+=1
+
+    # print(passwordList)
+    random.shuffle(passwordList)
+    # print(passwordList)
+    for value in passwordList:
+        password = password + str(value)
+
+    print('password {}'.format(password))
+
 def main():
-    exercise15()
+    exercise16()
 
 if __name__ == '__main__':
     main()
