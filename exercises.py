@@ -251,8 +251,142 @@ def exercise16():
 
     print('password {}'.format(password))
 
+def exercise18():
+    # Get user details..
+    kidsmode = False
+    newGame = False
+    userName = ""
+
+    while not newGame:
+        # if userName.isspace() or len(userName)==0:
+        #     # print("Your name")
+        #     userName = input("Who is playing?")
+        # elif userName.upper() == "DHANNUSH" or userName.upper() == "AARUSHI":
+        #     print("Welcome {}".format(userName))
+        #     kidsmode = True
+        #     newGame = True
+        #     numberofDigits = 3
+        #     divisor = 100
+        # else:
+        #     numberofDigits = input("Choose number of digits, should be more than 1: ")
+        #     if not numberofDigits.isdigit() or int(numberofDigits) < 2:
+        #         print("Number of digits should be more than 1")
+        #     else:
+        #         newGame = True
+        #         divisor = 10**(int(numberofDigits)-1)
+
+        numberofDigits = input("Choose number of digits, should be more than 1: ")
+        if not numberofDigits.isdigit() or int(numberofDigits) < 2:
+            print("Number of digits should be more than 1")
+        else:
+            newGame = True
+            divisor = 10**(int(numberofDigits)-1)
+
+    while newGame:
+        # Generate Random Number
+        low = 10**(int(numberofDigits)-1)-1
+        high = 10**int(numberofDigits)
+
+        # Get Random Number in list
+        randomNumber = random.randint(low,high)
+        randomList = list()
+        randomList = numberToList(randomNumber,divisor)
+
+        # Play Game
+        playGame = True
+        userInputList = list()
+        userGuess = input("Guess a {} digit number: ".format(numberofDigits))
+        while playGame:
+            cows = 0
+            bulls = 0
+            userList = list()
+
+            # Get User input
+            # userGuess = input("Guess a {} digit number: ".format(numberofDigits))
+            if not userGuess.isdigit():
+                playGame = False
+                newGame = False
+
+                print("System Generated Number {}: ".format(randomNumber))
+                print("Your Gusses: ")
+                print(userInputList)
+
+                # if kidsmode:
+                #     newGameInput = input("Do you want to play new game Y/N?")
+                #     if newGameInput.upper()=="Y":
+                #         newGame = True
+                #         numberofDigits = 3
+                #         divisor = 100
+                #     else:
+                #         newGame = False
+            elif not int(userGuess)>low and int(userGuess)<high:
+                print("Number should be between {} {}".format(low, high))
+                userGuess = input("Try again, numbers between ({} {}): ".format(low, high))
+            else:
+                userGuessNumber = int(userGuess)
+                userInputList.append(userGuessNumber)
+
+                userList = numberToList(userGuessNumber,divisor)
+                for (index,value) in enumerate(userList):
+                    if value in randomList:
+                        if randomList[index] == value:
+                            cows+=1
+                        else:
+                            bulls+=1
+
+                # Let user know..
+                cowString = ""
+                bullString = ""
+                if cows==1:
+                    cowString = "{} Cow".format(cows)
+                else:
+                    cowString = "{} Cows".format(cows)
+
+                if bulls==1:
+                    bullString = "{} Bull".format(bulls)
+                else:
+                    bullString = "{} Bulls".format(bulls)
+
+                print("{}, {}".format(cowString,bullString))
+
+                # Quit when user gussess correctly..
+                if cows==int(numberofDigits):
+                    playGame = False
+                    newGame = False
+
+                    print("You got the number right.......")
+                    print("System Generated Number {}: ".format(systemGenNumber))
+                    print("Your Gusses: ")
+                    print(userInputList)
+
+                    # if kidsmode:
+                    #     newGameInput = input("Do you want to play new game Y/N?")
+                    #     if newGameInput.upper()=="Y":
+                    #         newGame = True
+                    #         numberofDigits = 3
+                    #         divisor = 100
+                    #     else:
+                    #         newGame = False
+                else:
+                    userGuess = input("Try again, numbers between ({} {}): ".format(low, high))
+
+
+def numberToList(number,divisor):
+    numberList = list()
+    inputNumber = number
+    inputDivisor = divisor
+
+    while inputDivisor > 1:
+        numberList.append(int(inputNumber/inputDivisor))
+        inputNumber = inputNumber%inputDivisor
+        inputDivisor/=10
+    else:
+        numberList.append(int(inputNumber/inputDivisor))
+
+    return numberList
+
 def main():
-    exercise16()
+    exercise18()
 
 if __name__ == '__main__':
     main()
